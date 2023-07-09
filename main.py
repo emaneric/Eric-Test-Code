@@ -1,5 +1,6 @@
-from smbus2 import SMBus
+from smbus2 import SMBus, i2c_msg
 
 with SMBus(1) as bus:
-    b = bus.read_byte_data(04h, 0)
-    print(b)
+    # Read 64 bytes from address 80
+    msg = i2c_msg.read(68, 1)
+    bus.i2c_rdwr(msg)
